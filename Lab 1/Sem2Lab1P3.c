@@ -1,5 +1,5 @@
 // 17th January , 2022
-// Practice Activity - 1 , Question 2.
+// Practice Activity - 1 , Question 3.
 // Mridul Vasudeva
 // Binary searching.
 #include <stdio.h>
