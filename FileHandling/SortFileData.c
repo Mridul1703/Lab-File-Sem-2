@@ -42,7 +42,9 @@ void DataDisplay(int *array) {
 void WriteFile(int *array) {
 	FILE *fptr;
 	fptr = fopen("d2.txt","wb");
-	putw(*array, fptr);
+	for(int i=0; i<count; i++) {
+		putw(*(array+i), fptr);
+	}
 	fclose(fptr);
 }
 
