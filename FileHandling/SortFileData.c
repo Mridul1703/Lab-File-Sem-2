@@ -1,10 +1,9 @@
 #include <stdio.h>
 #define Num 100
+static int count = 0;
 
-void main() {
-	int count = 0;
+void ReadFile(int *array) {
 	FILE *fp = fopen("d1.txt","r");
-	int array[Num];
 	
 	while(1) {
 		if(feof(fp)) {
@@ -15,9 +14,48 @@ void main() {
 	}
 	
 	fclose(fp);
-	
-	int i;
-	for(i=0; i<count; i++) {
-		printf("%d ",array[i]);
+	printf("\t**FILE read Successfully**\n");	
+}
+
+void swap(int *array, int i, int j) {
+    int temp = array[i];
+    array[i] = array[j];
+    array[j] = temp; 
+}
+
+void InsertionSort(int *array, int count) {
+	for (int i=0; i<count-1; i++) {
+        for (int j=i+1; j>0; j--) {
+            if(array[j] < array[j-1]) {
+                swap(array, j, j-1); 
+            }
+        }
+    }
+}
+
+void DataDisplay(int *array) {
+	for(int i=0; i<count; i++) {
+		printf("%d ",*(array+i));
 	}
+}
+
+void WriteFile(int *array) {
+	FILE *fptr;
+	fptr = fopen("d2.txt","wb");
+	putw(*array, fptr);
+	fclose(fptr);
+}
+
+void main() {
+	int array[Num];
+	ReadFile(array);
+	
+	printf("Original Data:\n");
+	DataDisplay(array);
+
+    InsertionSort(array, count);
+	printf("\n\nSorted Data:\n");
+	DataDisplay(array);
+
+	WriteFile(array);
 }
